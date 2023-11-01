@@ -2,41 +2,51 @@
 <html>
 
 <head>
-  <title>Socket.IO chat</title>
-  <style>
-      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; width: 100%; max-width: 1024px; height: 100%;}
-      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+  <title>Texas Hold'em</title>
+  <style>     
+      /* #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
       #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
       #input:focus { outline: none; }
       #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
 
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages > li { padding: 0.5rem 1rem; }
-      #messages > li:nth-child(odd) { background: #efefef; }
+      #messages > li:nth-child(odd) { background: #efefef; } */
 
-      body {background: linear-gradient(to right, red, yellow);}
+      body { 
+        margin: 0; 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+        width: 100vw;
+        height: 100vh;
+        min-height: 100vh;
+        max-width: 400px;
+        background-image: url(https://i.ibb.co/Bns8hQF/poker.png);
+        background-size: 100% 100%;
+      }
       
+    </style>
+
+
+  <style>
       .slider {
         position: absolute;
-        top: 50%;
-        left: 50%;
         transform: translate(-50%,-50%);
-        width: 500px;
-        height: 60px;
-        padding: 30px;
-        padding-left: 40px;
+        width: 200px;
+        height: 30px;
         background: #fcfcfc;
         border-radius: 20px;
         display: flex;
         align-items: center;
         box-shadow: 0px 15px 40px #7E6D5766;
+        margin-top: 150px;
+        margin-left: 1100px;
       }
       
       .slider p {
         font-size: 26px;
         font-weight: 600;
         font-family: Open Sans;
-        padding-left: 30px;
+        /* padding-left: 30px; */
         color: black;
       }
       
@@ -50,8 +60,8 @@
       }
       .slider input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none !important;
-        width: 30px;
-        height:30px;
+        width: 20px;
+        height:20px;
         background: black;
         border: 2px solid black;
         border-radius: 50%;
@@ -61,139 +71,146 @@
       .slider input[type="range"]::-webkit-slider-thumb:hover {
         background: black;} 
 
-
-
-
-
-
       /* Define a CSS class that disables an element */
       .disabled {
         pointer-events: none;
         opacity: 0.5;
       }
-    </style>
-  <style>
-    .button1 {
-      border: none;
-      color: orange;
-      font-size: 20px;
-      margin-left: 850px;
-      margin-top: 100px;
-      height: 40px;
-      width: 200px;
-      position: absolute;
-      cursor: pointer;
-    }
 
-    .button2 {
-      border: none;
-      color: orange;
-      font-size: 20px;
-      margin-left: 600px;
-      margin-top: 100px;
-      height: 40px;
-      width: 200px;
-      position: absolute;
-      cursor: pointer;
-    }
+      .button1 {
+        border: none;
+        color: rgba(253, 0, 241, 0.365);
+        font-size: 20px;
+        margin-left: 750px;
+        margin-top: 200px;
+        height: 40px;
+        width: 200px;
+        position: absolute;
+        cursor: pointer;
+      }
 
-  /* .slidecontainer {
-    width: 100%
-  }
+      .button2 {
+        border: none;
+        color: orange;
+        font-size: 20px;
+        margin-left: 500px;
+        margin-top: 200px;
+        height: 40px;
+        width: 200px;
+        position: absolute;
+        cursor: pointer;
+      }
 
-  .slider {
-  width: 100%;
-  height: 15px;
-  border-radius: 5px;  
-  background: #ffffff;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  margin-top: 600 px;
-  margin-left: 300 px;
-}
+      .button3 {
+        border: none;
+        color: orange;
+        font-size: 20px;
+        margin-left: 1000px;
+        margin-top: 200px;
+        height: 40px;
+        width: 200px;
+        position: absolute;
+        cursor: pointer;
+      }
 
-.slider:hover {
-  opacity: 1; /* Fully shown on mouse-over */
-/* } */
+      .button4 {
+        border: none;
+        color: orange;
+        font-size: 20px;
+        margin-left: 1250px;
+        margin-top: 200px;
+        height: 40px;
+        width: 200px;
+        position: absolute;
+        cursor: pointer;
+      }
 
-/* for chrome, opera, safari, edge */
-/* .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%; 
-  background: #f52004;
-  cursor: pointer;
-}
+     .image-row {
+        visibility: hidden;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 100px;
+        margin-left: 650px;
+      }
 
-/* for firefox */
-/* .slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #04AA6D;
-  cursor: pointer;
-} */ */ */
+      .scrollabletextbox {
+        height:100px;
+        width:200px;
+        font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+        font-size: 82%;
+        overflow:scroll;
+      }
+      
+      .hand_image_row{
+        visibility: hidden;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 150px;
+        margin-left: 650px;
+        padding: 5px;
+      }
 
-body {
-  width: 100vw;
-  height: 100vh;
-  /* background-image: url("poker.jpg"); */
-  background-size: 100% 100%;
-}
+
   </style>
 </head>
 
 
-
 <body>
+  <textarea id="messages", class="scrollabletextbox" name = "note">
+    <?php echo $note; ?>
+  </textarea>
 
-  <ul id="title">user ID here</ul>
-  <ul id="messages"></ul>
   <form id="form" action="">
-
     <input id="input" autocomplete="off" /><button>Send</button>
   </form>
 
 
+  
+  <div class="image-row">
+      <img src="" id="first_flop" width="78" height="110">
+      <img src="" id="second_flop" width="78" height="110">
+      <img src="" id="third_flop" width="78" height="110">
+      <img src="" id="turn" width="78" height="110">
+      <img src="" id="river" width="78" height="110">
+  </div>
+
+  <div class="hand_image_row">
+    <img src="" id="first_card" width="78" height="110">
+    <img src="" id="second_card" width="78" height="110">
+  </div>
+  
+  
+
   <!-- buttons -->
   <!-- making button onlhy clickable once in function -->
-  <button class="button1" id="button1"  onclick ="disableButton()">Check</button>
-  <button class="button2" id="button2"  onclick ="disableButton()">Ready</button>
+  <button class="button1" id="button1"  onclick ="disableCheckButton()" >Check</button>
+  <button class="button2" id="button2"  onclick ="disableReadyButton()" >Ready</button>
+  <button class="button3" id="button3"  onclick="sendBet()" >bet</button>
+  <button class="button4" id="button4"  onclick="sendfold()">fold</button>
 
-  <div class="slider"><input type="range" min="0" max="200" value="100" oninput="rangeValue.innerText = this.value">
+  <div class="slider"><input id="slider" type="range" min="0" max="200" value="100" oninput="rangeValue.innerText = this.value">
     <p id="rangeValue">100</p>
   </div>
 
-<!-- <div class="slidecontainer">
-  <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
-</div>
-   -->
 
   <script src="/socket.io/socket.io.js"></script>
-  <script>
+  <script> 
     var socket = io();
-
-    var slider = document.getElementById("myRange");
-    var output = document.getElementById("demo");
     var user_id = document.getElementById('title')
     var messages = document.getElementById('messages');
     var form = document.getElementById('form');
     var input = document.getElementById('input');
-    var button = document.getElementById("button1");
+    var check_button = document.getElementById("button1");
+    var ready_button = document.getElementById("button2");
+    var bet_button = document.getElementById('button3');
+    var fold_button = document.getElementById('button4');
+    var slider = document.getElementById('slider');
 
-    // output.innerHTML = slider.value; // Display the default slider value
-
-
-    // // Update the current slider value (each time you drag the slider handle)
-    // slider.oninput = function () {
-    //   output.innerHTML = this.value;
-    // }
-
-
+    // name list user in reset loop
+    const display_list = ['first_flop', 'second_flop', 'third_flop', 'turn', 'river', 'first_card', 'second_card'];
+    var current_stage = 0;
+    var ID ='';
+    
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (input.value) {
@@ -202,41 +219,94 @@ body {
       }
     });
 
-    socket.on('message_container', function (msg) {
-      var user_id_var = document.createElement('li');
-      //create a new user here and assigne their user id 
+    //disable ready button and send ready message to server
+    const disableReadyButton = () => {
+      // when ready send user id from user class
+      socket.emit('ready message');
+      // Add the disabled class using classList.add()
+      ready_button.classList.add("disabled");
+    }
 
-      user_id_var.textContent = msg;
-      user_id.appendChild(user_id_var);
-      window.scrollTo(0, document.body.scrollHeight)
+    const disableCheckButton =() => {
+      // send notification of user checked to the server
+      // send counter message
+      socket.emit('counter message');
+      socket.emit('check message');
+      // disable the buttons
+      disableButtons(true);
+    }
+
+    const sendBet = () => {
+      //same structure as check 
+      disableCheckButton();
+      socket.emit('get bet', slider.value);
+    }
+
+    const sendfold =() => {
+      disableCheckButton();
+      socket.emit('fold message', ID);
+    }
+  
+    // disables and enables check, bet, and fold buttons 
+    const disableButtons = (arg) => {
+      if (arg == true){
+        check_button.classList.add("disabled");
+        bet_button.classList.add("disabled");
+        fold_button.classList.add("disabled");
+      } else {
+        check_button.classList.remove("disabled");
+        bet_button.classList.remove("disabled");
+        fold_button.classList.remove("disabled");
+      }
+    }
+
+    // clear all cards from display
+    const clearDisplay = () => {
+      for (let i = 0; i < display_list.length; i++) {
+        document.getElementById(display_list[i]).style.visibility = "hidden"
+      }
+    }
+  
+  //call function to display first flops to the screen
+    socket.on("display", (card, index) => {
+      document.getElementById(display_list[index]).src = ('https://www.improvemagic.com/wp-content/uploads/2020/11/' + card + '.png?ezimgfmt=ng:webp/ngcb13');
+      document.getElementById(display_list[index]).style.visibility = "visible";
     })
 
     socket.on('chat message', function (msg) {
       var item = document.createElement('li');
       item.textContent = msg;
       messages.appendChild(item);
-      window.scrollTo(0, document.body.scrollHeight);
     });
 
-    //disable ready button and send ready message to server
-    const disableButton = () => {
-      alert("you r ready");
+    socket.on("ID message", (arg) => {
+      ID = arg;
+    })
 
+    socket.on('on turn', () => {
+      //disable/enable buttons accodringly
+      disableButtons(false);
 
+    })
 
-      // when ready send user id from user class
-      socket.emit('ready message');
+    socket.on('game start', () => {
+      disableButtons(true);
+    })
 
+    //get stage number from server
+    socket.on('stage check', (arg) => {
+      current_stage = arg;
+    })
 
-
-
-      // Get the button element by id
-      var button = document.getElementById("button2");
-
-      // Add the disabled class using classList.add()
-      button.classList.add("disabled");
-    }
-
+    //reset all displays 
+    socket.on('reset game', () => {
+      disableButtons(true);
+      ready_button.classList.remove("disabled");
+      clearDisplay();
+      alert("click ready for next game");
+    })
+  
+    clearDisplay();
   </script>
 </body>
 
